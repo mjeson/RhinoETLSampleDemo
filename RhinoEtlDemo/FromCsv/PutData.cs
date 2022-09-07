@@ -7,6 +7,13 @@ namespace RhinoEtlDemo.FromCsv
 {
     public class PutData : AbstractOperation
     {
+        public PutData(List<DataRecord> resultList)
+        {
+            _resultList = resultList;
+        }
+
+        private readonly List<DataRecord> _resultList;
+
         public override IEnumerable<Row> Execute(IEnumerable<Row> rows)
         {
             foreach (Row row in rows)
@@ -17,6 +24,7 @@ namespace RhinoEtlDemo.FromCsv
                     AWord = (string)row["AWord"]
                 };
                 Console.WriteLine(record.AWord);
+                _resultList.Add(record);
             }
             yield break;
         }

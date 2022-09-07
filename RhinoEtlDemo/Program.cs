@@ -1,5 +1,6 @@
 ﻿using RhinoEtlDemo.FromCsv;
 using System;
+using System.Collections.Generic;
 using RhinoEtlDemo.FromDb;
 
 namespace RhinoEtlDemo
@@ -8,8 +9,8 @@ namespace RhinoEtlDemo
     {
         static void Main(string[] args)
         {
-            //testCsv();
-            fromDb();
+            testCsv();
+            //fromDb();
         }
 
         private static void fromDb()
@@ -23,10 +24,12 @@ namespace RhinoEtlDemo
 
         private static void testCsv()
         {
+            var resultList = new List<DataRecord>();
+
             Console.WriteLine("----Lets create a Rhino-ETL ----");
             Console.WriteLine("--------------------------------");
             // Here is the actual work. 
-            var exNihiloP = new ExNihiloProcess();
+            var exNihiloP = new ExNihiloProcess(resultList);
             exNihiloP.Execute();
             Console.WriteLine("-------------------------------");
             Console.WriteLine("----Hit any Rhino to exit------");
